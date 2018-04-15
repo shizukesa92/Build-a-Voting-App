@@ -1,20 +1,24 @@
-const request = new XMLHttpRequest();
-request.open("GET", "/api", true);
+	import 'materialize-css/dist/css/materialize.min.css';
+	import React from 'react';
+	import ReactDOM from 'react-dom';
+	import {
+		Provider
+	} from 'react-redux';
+	import {
+		createStore,
+		applyMiddleware
+	} from 'redux';
+	import reducers from './reducers';
+	import reduxThunk from 'redux-thunk';
+	import App from './components/App';
 
-request.onload = () => {
-	if (request.status >= 200 && request.status < 400) {
+	import axios from 'axios';
+	window.axios = axios;
+	const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
-		const x = document.getElementsByClassName("hostURL");
-		for (let i = 0; i < x.length; i++) {
-			x[i].innerText = request.responseText;
-		}
-	} else {
-		console.log("Server returned error!");
-	}
-};
-
-request.onerror = () => {
-	console.log("Request error!");
-};
-
-request.send();
+	ReactDOM.render(
+		<Provider store={store}>
+    <App />
+  </Provider>,
+		document.querySelector('#root')
+	);

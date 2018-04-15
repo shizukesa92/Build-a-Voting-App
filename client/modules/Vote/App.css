@@ -1,0 +1,58 @@
+nav {
+  padding: 5px 30px;
+}
+.greyout {
+  background-color: black;
+  opacity: 0.5;
+  z-index: 5;
+  position: absolute;
+  height: 100%;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+.loginWindow {
+  background-color: white;
+  position: relative;
+  margin-top: 50px;
+  /* #ff0000; */
+  /* opacity: 1; */
+  /* position: fixed; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+  z-index: 10;
+}
+
+.card .card-content {
+  padding: 24px 24px 6px 24px;
+}
+
+input.otherAnswer[type='text']:focus,
+textarea {
+  background-color: #e0e0e0 !important;
+}
+
+.otherAnswer {
+  width: 200px !important;
+}
+.otherRadioBtn {
+  /* background-color: red !important; */
+  /* margin-top: 10px; */
+}
+
+.noHandPointer {
+  cursor: default !important;
+}
+
+.answerOptions {
+  padding-top: '2rem';
+  margin-left: 25px;
+}
+
+.blockBtns {
+  display: block;
+  margin: 0px 20px 10px 20px;
+}

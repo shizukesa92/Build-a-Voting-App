@@ -1,10 +1,10 @@
 {
-  "name": "Build-a-Voting-App",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/shizukesa92/Build-a-Voting-App.git",
-  "author": "Leonard Tye <leonardtye1992@gmail.com>",
-  "license": "MIT",
+	"name": "Build-a-Voting-App",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/shizukesa92/Build-a-Voting-App.git",
+	"author": "Leonard Tye <leonardtye1992@gmail.com>",
+	"license": "MIT",
 	"engines": {
 		"node": "9.7.1",
 		"npm": "5.8.0",
@@ -18,20 +18,30 @@
 		"postinstall": "webpack --env prod --progress --config webpack.config.js"
 	},
 	"dependencies": {
+		"axios": "^0.18.0",
 		"babel-core": "^6.26.0",
+		"bcrypt-nodejs": "^0.0.3",
 		"body-parser": "^1.18.2",
+		"compression": "^1.7.2",
+		"concurrently": "^3.5.1",
 		"dotenv": "^5.0.1",
 		"express": "^4.16.3",
 		"mongodb": "^3.0.5",
 		"mongoose": "^5.0.13",
+		"passport": "^0.4.0",
 		"react": "^16.3.0",
+		"react-bootstrap": "^0.32.1",
 		"react-dom": "^16.3.0",
 		"react-redux": "^5.0.7",
+		"react-router": "^4.2.0",
+		"react-router-dom": "^4.2.2",
 		"redux": "^3.7.2",
 		"redux-batched-actions": "^0.2.1",
 		"redux-thunk": "^2.2.0",
 		"sass-loader": "^6.0.7",
-		"style-loader": "^0.20.3"
+		"style-loader": "^0.20.3",
+		"webpack-dev-middleware": "^3.1.2",
+		"webpack-hot-middleware": "^2.21.2"
 	},
 	"devDependencies": {
 		"autoprefixer": "^8.2.0",

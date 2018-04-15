@@ -1,16 +1,43 @@
-const express = require("express");
-const route = require("./server/routes/router");
-const mongo = require("mongodb").MongoClient;
-const dotenv = require("dotenv").config();
-const uri = process.env.MONGOLAB_URI;
+const express = require('express');
+const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+const keys = require('./config/keys');
+
+require('./models/User');
+require('./models/Poll');
+require('./models/Voters');
+require('./services/passport');
+
+mongoose.connect(keys.mongoURI);
+
+// const User = mongoose.model('users');
 
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+	extended: true
+}));
+app.use(
+	cookieSession({
+		maxAge: 24 * 60 * 60 * 1000,
+		keys: [keys.cookieKey]
+	})
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
-mongo.connect(uri, (err, db) => {
-	if (err) throw err;
-	route(app, db);
-});
+require('./routes/authRoutes')(app);
+require('./routes/pollRoutes')(app);
 
-app.listen(process.env.PORT || 3000); // Must use process.env.PORT because heroku and other cloud hosts may not use port 3000
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
+	const path = require('path');
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+	});
+}
 
-// create app and heroku config:set MONGOLAB_URI=mongodb://<dbuser>:<dbpassword>@ds237989.mlab.com:37989/url-shortener-microservice
+const PORT = process.env.PORT || 5000;
+app.listen(PORT);

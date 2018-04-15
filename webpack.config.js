@@ -1,11 +1,12 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const webpack = require("webpack"); /* Needed for jquery */
+const path = require("path");
 
 module.exports = {
-	entry: ["./client/index.js", "./client/main.scss", "./client/index.html"],
+	entry: path.resolve(__dirname, 'client', 'index.js'),
 	output: {
-		path: __dirname + "/dist/client/"
+		path: path.resolve(__dirname, "dist", "client"),
 	},
 	devServer: {
 		proxy: {
