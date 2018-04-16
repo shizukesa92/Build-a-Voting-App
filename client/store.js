@@ -1,30 +1,13 @@
-/**
- * Main store function
- */
+import {
+	Provider
+} from 'react-redux';
 import {
 	createStore,
-	applyMiddleware,
-	compose
+	applyMiddleware
 } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
 
-export function configureStore(initialState = {}) {
-	// Middleware and store enhancers
-	const enhancers = [
-		applyMiddleware(thunk),
-	];
+import reducers from './reducers';
 
-	const store = createStore(rootReducer, initialState, compose(...enhancers));
+import reduxThunk from 'redux-thunk';
 
-	// For hot reloading reducers
-	if (module.hot) {
-		// Enable Webpack hot module replacement for reducers
-		module.hot.accept('./reducers', () => {
-			const nextReducer = require('./reducers').default; // eslint-disable-line global-require
-			store.replaceReducer(nextReducer);
-		});
-	}
-
-	return store;
-}
+export const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
