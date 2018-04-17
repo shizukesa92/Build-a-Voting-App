@@ -2,10 +2,7 @@ import React, {
 	Component
 } from 'react';
 import {
-	BrowserRouter,
-	Route,
-	Redirect,
-	Switch
+	BrowserRouter
 } from 'react-router-dom';
 import {
 	connect
@@ -13,11 +10,7 @@ import {
 import * as actions from './modules/Vote/VoteActions';
 import Header from './components/Header';
 import Footer from "./components/Footer";
-import Gateway from './modules/App/Gateway';
-import Landing from './modules/App/Landing';
-import Poll from './modules/Vote/Poll';
-import PollNew from './PollNew';
-import ProtectedRoute from './ProtectedRoute';
+import routes from "./routes";
 require("./main.scss");
 
 class App extends Component {
@@ -27,35 +20,15 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-        <BrowserRouter>
+			<BrowserRouter>
           <div>
             <Header />
             <div className="container">
-              <Switch>
-                <Route exact path="/" component={Landing} />
-                <Route exact path="/login" component={Gateway} />
-                <Route exact path="/new_user" component={Gateway} />
-                <Route exact path="/poll/:pollId/" component={Poll} />
-                <ProtectedRoute
-                  exact
-                  path="/my_polls"
-                  auth={this.props.auth}
-                  component={Landing}
-                />
-                <ProtectedRoute
-                  exact
-                  path="/new_poll"
-                  auth={this.props.auth}
-                  component={PollNew}
-                />
-                <Redirect to="/" />
-              </Switch>
+				{routes}
             </div>
 	<Footer />
           </div>
         </BrowserRouter>
-      </div>
 		);
 	}
 }

@@ -44,14 +44,12 @@ class Header extends Component {
 
 	render() {
 		return (
-			<nav className="indigo darken-3">
-        <div className="nav-wrapper">
-          <a href="/" className="left brand-logo">
+			<div id="header">
+				<a href="/" className="left brand-logo"> {/*bootstrap this*/} 
             Build a Voting App
           </a>
           <ul className="right">{this.renderContent()}</ul>
         </div>
-      </nav>
 		);
 	}
 }
