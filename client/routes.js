@@ -1,1 +1,1 @@
-{\rtf1}
+// Empty for this project

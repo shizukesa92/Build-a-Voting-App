@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js install
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add redux-form
 
 PATH: 
   C:\tools\cmder\vendor\conemu-maximus5\ConEmu\Scripts;C:\tools\cmder\vendor\conemu-maximus5;C:\tools\cmder\vendor\conemu-maximus5\ConEmu;C:\Program Files\Python36\Scripts\;C:\Program Files\Python36\;C:\Users\Owner\AppData\Local\Programs\Python\Python36\Scripts\;C:\Users\Owner\AppData\Local\Programs\Python\Python36\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\PROGRAMDATA\ORACLE\JAVA\JAVAPATH;C:\PROGRAM FILES (X86)\AMD APP\BIN\X86_64;C:\PROGRAM FILES (X86)\INTEL\ICLS CLIENT\;C:\PROGRAM FILES\INTEL\ICLS CLIENT\;C:\WINDOWS\SYSTEM32;C:\WINDOWS;C:\WINDOWS\SYSTEM32\WBEM;C:\WINDOWS\SYSTEM32\WINDOWSPOWERSHELL\V1.0\;C:\PROGRAM FILES (X86)\INTEL\OPENCL SDK\2.0\BIN\X86;C:\PROGRAM FILES (X86)\INTEL\OPENCL SDK\2.0\BIN\X64;C:\PROGRAM FILES\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\DAL;C:\PROGRAM FILES\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\IPT;C:\PROGRAM FILES (X86)\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\DAL;C:\PROGRAM FILES (X86)\INTEL\INTEL(R) MANAGEMENT ENGINE COMPONENTS\IPT;C:\PROGRAM FILES (X86)\ATI TECHNOLOGIES\ATI.ACE\CORE-STATIC;C:\PROGRAM FILES (X86)\WINDOWS LIVE\SHARED;C:\Program Files\WIDCOMM\Bluetooth Software\;C:\Program Files\WIDCOMM\Bluetooth Software\syswow64;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files (x86)\Skype\Phone\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Gow\bin;C:\Program Files (x86)\vim\vim80;C:\ProgramData\chocolatey\lib\curl\tools\curl_x64;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin\;C:\Program Files (x86)\Yarn\bin;C:\Program Files\MongoDB\Server\3.6\bin;C:\Users\Owner\AppData\Local\Programs\Python\Python35\Scripts\;C:\Users\Owner\AppData\Local\Programs\Python\Python35\;C:\Users\Owner\AppData\Local\Microsoft\WindowsApps\;C:\tools\cmder\;C:\Users\Owner\AppData\Local\GitHubDesktop\bin\;C:\Program Files\CMake\bin\;C:\Windows\Microsoft.NET\Framework64\v4.0.30319\;C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\;C:\Users\Owner\AppData\Roaming\npm\;C:\Program Files\MongoDB\Server\3.6\bin\;C:\Program Files (x86)\Yarn\bin\;C:\Program Files\Heroku\bin;C:\Program Files\Git\bin;C:\Program Files\Git\usr\bin
@@ -53,6 +53,7 @@ npm manifest:
   		"react-router-dom": "^4.2.2",
   		"redux": "^3.7.2",
   		"redux-batched-actions": "^0.2.1",
+  		"redux-form": "^7.3.0",
   		"redux-thunk": "^2.2.0",
   		"sass-loader": "^6.0.7",
   		"style-loader": "^0.20.3",
@@ -2646,6 +2647,10 @@ Lockfile:
       is-date-object "^1.0.1"
       is-symbol "^1.0.1"
   
+  es6-error@^4.1.1:
+    version "4.1.1"
+    resolved "https://registry.yarnpkg.com/es6-error/-/es6-error-4.1.1.tgz#9e3af407459deed47e9a91f9b885a84eb05c561d"
+  
   es6-templates@^0.2.3:
     version "0.2.3"
     resolved "https://registry.yarnpkg.com/es6-templates/-/es6-templates-0.2.3.tgz#5cb9ac9fb1ded6eb1239342b81d792bbb4078ee4"
@@ -3966,7 +3971,7 @@ Lockfile:
       from2 "^2.1.1"
       p-is-promise "^1.1.0"
   
-  invariant@^2.0.0, invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
+  invariant@^2.0.0, invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2, invariant@^2.2.3:
     version "2.2.4"
     resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.4.tgz#610f3c92c9359ce1db616e538008d23ff35158e6"
     dependencies:
@@ -6684,6 +6689,19 @@ Lockfile:
   redux-batched-actions@^0.2.1:
     version "0.2.1"
     resolved "https://registry.yarnpkg.com/redux-batched-actions/-/redux-batched-actions-0.2.1.tgz#d0c41d495a934004cabafbe0e851746d1795e9dd"
+  
+  redux-form@^7.3.0:
+    version "7.3.0"
+    resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-7.3.0.tgz#b92ef1639c86a6009b0821aacfc80ad8b5ac8c05"
+    dependencies:
+      deep-equal "^1.0.1"
+      es6-error "^4.1.1"
+      hoist-non-react-statics "^2.5.0"
+      invariant "^2.2.3"
+      is-promise "^2.1.0"
+      lodash "^4.17.5"
+      lodash-es "^4.17.5"
+      prop-types "^15.6.1"
   
   redux-thunk@^2.2.0:
     version "2.2.0"

@@ -1,12 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import {
 	Provider
 } from 'react-redux';
-
-import App from './app';
-
 import axios from 'axios';
+
+import {
+	store
+} from "./store";
+import App from './App';
+
 window.axios = axios;
 
 ReactDOM.render(
