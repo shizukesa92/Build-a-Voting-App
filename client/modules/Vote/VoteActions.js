@@ -1,9 +1,4 @@
 import axios from 'axios';
-import {
-	FETCH_USER,
-	FETCH_POLLS,
-	SHOW_VOTES
-} from './types';
 
 export const FETCH_USER = 'fetch_user';
 

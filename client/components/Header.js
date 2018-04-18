@@ -7,7 +7,6 @@ import {
 import {
 	Link
 } from 'react-router-dom';
-// import * as actions from '../actions/index';
 
 class Header extends Component {
 	renderContent() {
@@ -45,10 +44,10 @@ class Header extends Component {
 	render() {
 		return (
 			<div id="header">
-				<a href="/" className="left brand-logo"> {/*bootstrap this*/} 
+				<a href="/" id="left"> 
             Build a Voting App
           </a>
-          <ul className="right">{this.renderContent()}</ul>
+          <ul id="right">{this.renderContent()}</ul>
         </div>
 		);
 	}

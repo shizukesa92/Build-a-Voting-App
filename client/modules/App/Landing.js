@@ -1,43 +1,55 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchPolls, showVotes, deletePoll } from '../actions';
+import React, {
+	Component
+} from 'react';
+import {
+	connect
+} from 'react-redux';
+import {
+	Link
+} from 'react-router-dom';
+import {
+	fetchPolls,
+	showVotes,
+	deletePoll
+} from '../Vote/VoteActions';
 
 class Landing extends Component {
-  state = { personalView: this.props.match.path === '/my_polls' };
+	state = {
+		personalView: this.props.match.path === '/my_polls'
+	};
 
-  componentDidMount() {
-    this.props.fetchPolls(this.state.personalView);
-  }
+	componentDidMount() {
+		this.props.fetchPolls(this.state.personalView);
+	}
 
-  renderDelete(pollId) {
-    if (this.state.personalView)
-      return (
-        <div
+	renderDelete(pollId) {
+		if (this.state.personalView)
+			return (
+				<div
           className="float right btn"
           style={{ marginLeft: '15px' }}
           onClick={() => deletePoll(pollId)}
         >
           Delete
         </div>
-      );
-  }
+			);
+	}
 
-  renderPolls() {
-    if (this.state.personalView && this.props.polls.length === 0)
-      return (
-        <div className="center-align">
+	renderPolls() {
+		if (this.state.personalView && this.props.polls.length === 0)
+			return (
+				<div className="center-align">
           <h5 style={{ margin: '60px 0px 30px 0px' }}>
-            You have not created any pools.
+            You have not created any polls.
           </h5>
           <h6>
             Click on 'Create New Poll' in the overhead menu to get started.
           </h6>
         </div>
-      );
-    return this.props.polls.reverse().map(poll => {
-      return (
-        <div className="card blue-grey darken-1" key={poll._id}>
+			);
+		return this.props.polls.reverse().map(poll => {
+			return (
+				<div className="card blue-grey darken-1" key={poll._id}>
           <div className="card-content white-text">
             <div className="row">
               <div className="col s6 card-title">{poll.question}</div>
@@ -82,24 +94,31 @@ class Landing extends Component {
             </div>
           </div>
         </div>
-      );
-    });
-  }
+			);
+		});
+	}
 
-  render() {
-    return (
-      <div>
+	render() {
+		return (
+			<div>
         <h2 className="center-align">
           {this.state.personalView ? 'My ' : ''}Recent Polls
         </h2>
         {this.renderPolls()}
       </div>
-    );
-  }
+		);
+	}
 }
 
-function mapStateToProps({ polls }) {
-  return { polls };
+function mapStateToProps({
+	polls
+}) {
+	return {
+		polls
+	};
 }
 
-export default connect(mapStateToProps, { fetchPolls, showVotes })(Landing);
+export default connect(mapStateToProps, {
+	fetchPolls,
+	showVotes
+})(Landing);

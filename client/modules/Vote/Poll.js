@@ -1,44 +1,51 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {
+	Component
+} from 'react';
+import {
+	connect
+} from 'react-redux';
 import axios from 'axios';
 import VotesChart from './VotesChart';
 import PollSubmitAnswer from './PollSubmitAnswer';
-import { showVotes, deletePoll } from '../actions';
+import {
+	showVotes,
+	deletePoll
+} from '../Vote/VoteActions';
 
 class Poll extends Component {
-  state = {
-    pollId: this.props.match.params.pollId,
-    username: '',
-    dateCreated: '',
-    question: '',
-    answers: [],
-    totalVotes: 0
-  };
+	state = {
+		pollId: this.props.match.params.pollId,
+		username: '',
+		dateCreated: '',
+		question: '',
+		answers: [],
+		totalVotes: 0
+	};
 
-  componentDidMount() {
-    this.getPollInfo(this.state.pollId);
-  }
+	componentDidMount() {
+		this.getPollInfo(this.state.pollId);
+	}
 
-  componentWillUnmount() {
-    this.props.showVotes(false);
-  }
+	componentWillUnmount() {
+		this.props.showVotes(false);
+	}
 
-  getPollInfo = async pollId => {
-    const res = await axios.get('/api/poll/' + pollId);
-    this.setState({
-      dateCreated: new Date(res.data.dateCreated).toLocaleDateString(),
-      username: res.data.username,
-      question: res.data.question,
-      answers: res.data.answers,
-      totalVotes: res.data.answers.reduce(
-        (ans1, ans2) => ans1 + ans2.voteCount,
-        0
-      )
-    });
-  };
-  renderPollOptions() {
-    return (
-      <div>
+	getPollInfo = async pollId => {
+		const res = await axios.get('/api/poll/' + pollId);
+		this.setState({
+			dateCreated: new Date(res.data.dateCreated).toLocaleDateString(),
+			username: res.data.username,
+			question: res.data.question,
+			answers: res.data.answers,
+			totalVotes: res.data.answers.reduce(
+				(ans1, ans2) => ans1 + ans2.voteCount,
+				0
+			)
+		});
+	};
+	renderPollOptions() {
+		return (
+			<div>
         <h4 className="center-align" style={{ marginBottom: '0px' }}>
           Options
         </h4>
@@ -84,11 +91,11 @@ class Poll extends Component {
           )}
         </ul>
       </div>
-    );
-  }
-  render() {
-    return (
-      <div>
+		);
+	}
+	render() {
+		return (
+			<div>
         <div className="row ">
           <div className="col s12">
             <h2 className="center-align" style={{ paddingBottom: '20px' }}>
@@ -122,12 +129,20 @@ class Poll extends Component {
           </div>
         </div>
       </div>
-    );
-  }
+		);
+	}
 }
 
-function mapStateToProps({ auth, showVoteOptions }) {
-  return { auth, showVoteOptions };
+function mapStateToProps({
+	auth,
+	showVoteOptions
+}) {
+	return {
+		auth,
+		showVoteOptions
+	};
 }
 
-export default connect(mapStateToProps, { showVotes })(Poll);
+export default connect(mapStateToProps, {
+	showVotes
+})(Poll);

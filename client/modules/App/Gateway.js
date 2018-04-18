@@ -4,13 +4,12 @@ import React, {
 import {
 	withRouter
 } from 'react-router-dom';
-import AuthWindow from './authFlow/AuthWindow';
+import AuthWindow from './AuthWindow';
 
 class Gateway extends Component {
 	state = {
 		redirectOnSuccess: typeof this.props.location.state !== 'undefined' ?
-			this.props.location.state.from.pathname :
-			'/my_polls'
+			this.props.location.state.from.pathname : '/my_polls'
 	};
 
 	closeGateway = () => {

@@ -8,7 +8,7 @@ import Gateway from './modules/App/Gateway';
 import Landing from './modules/App/Landing';
 import Poll from './modules/Vote/Poll';
 import PollNew from './modules/Vote/PollNew';
-import ProtectedRoute from './modules/Vote/ProtectedRoute';
+import ProtectedRoute from './modules/App/ProtectedRoute';
 
 export default (
 	<Switch>

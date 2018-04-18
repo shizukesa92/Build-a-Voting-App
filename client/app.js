@@ -12,6 +12,7 @@ import Header from './components/Header';
 import Footer from "./components/Footer";
 import routes from "./routes";
 require("./main.scss");
+require("./modules/App/App.scss")
 
 class App extends Component {
 	componentDidMount() {
