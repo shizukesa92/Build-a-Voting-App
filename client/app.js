@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import routes from "./routes";
 require("./main.scss");
 require("./modules/App/App.scss")
+require("./components/Components.scss")
 
 class App extends Component {
 	componentDidMount() {
@@ -24,8 +25,10 @@ class App extends Component {
 			<BrowserRouter>
           <div>
             <Header />
-            <div className="container">
-				{routes}
+            <div id = "wrapper">
+				<div id = "content">
+					{routes}
+				</div>
             </div>
 	<Footer />
           </div>

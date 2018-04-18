@@ -1,0 +1,33 @@
+@import "~bootstrap/scss/bootstrap";
+
+#header {
+	width: 100vw;
+	height: 10vh;
+	display: flex;
+	background-color: #BDBDBD;
+	color: #5F5F5F;
+	#left {
+		width: 20%;
+	}
+	#right{
+		width: 20%;
+		margin-left: auto;
+	}
+}
+
+#footer {
+	bottom: 0;
+	position: absolute;
+	width: 100vw;
+	height: 5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #BDBDBD;
+	color: #5F5F5F;
+
+	b {
+		font-size: 1vw;
+	}
+}
+

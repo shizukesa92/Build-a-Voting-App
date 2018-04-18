@@ -162,13 +162,10 @@ class AuthWindow extends Component {
 	};
 
 	render() {
-		// console.log(this.props.location);
 		return (
-			<div className="row">
-        <div className="col s8 offset-s2 loginWindow">
+			<div id = "authwindow">
           {this.renderContent()}
         </div>
-      </div>
 		);
 	}
 }

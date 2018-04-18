@@ -1,22 +1,23 @@
-import React, { Component } from 'react';
+import React, {
+	Component
+} from 'react';
 
 class AuthForm extends Component {
-  returnTitle = () => {
-    return this.props.pathname === '/login' ? 'Log In' : 'Register';
-  };
+	returnTitle = () => {
+		return this.props.pathname === '/login' ? 'Log In' : 'Register';
+	};
 
-  returnInstructions = () => {
-    return this.props.pathname === '/login'
-      ? 'Please enter your Username and Password.'
-      : 'Pleaes enter a new Username and Password.';
-  };
+	returnInstructions = () => {
+		return this.props.pathname === '/login' ?
+			'Please enter your Username and Password.' :
+			'Pleaes enter a new Username and Password.';
+	};
 
-  returnPasswordConfirm = () => {
-    return this.props.pathname === '/login' ? (
-      <div />
-    ) : (
-      <div className="row">
-        <div className="input-field col s12">
+	returnPasswordConfirm = () => {
+		return this.props.pathname === '/login' ? (
+			<div />
+		) : (
+			<div id = "confirmation">
           <input
             id="passwordConfirm"
             type="password"
@@ -25,48 +26,42 @@ class AuthForm extends Component {
           />
           <label htmlFor="password">Confirm Password</label>
           {this.returnPasswordConfirmFailure()}
-        </div>
       </div>
-    );
-  };
+		);
+	};
 
-  returnPasswordConfirmFailure = () => {
-    if (!this.props.passwordEntered)
-      return <span style={{ color: 'red' }}>{'Please enter a password.'}</span>;
-    if (!this.props.passwordsMatch)
-      return (
-        <span style={{ color: 'red' }}>
+	returnPasswordConfirmFailure = () => {
+		if (!this.props.passwordEntered)
+			return <span style={{ color: 'red' }}>{'Please enter a password.'}</span>;
+		if (!this.props.passwordsMatch)
+			return (
+				<span style={{ color: 'red' }}>
           {"The passwords don't match. Please retype your password."}
         </span>
-      );
-    return;
-  };
+			);
+		return;
+	};
 
-  returnUsernameEmpty = () => {
-    return this.props.usernameEntered ? (
-      <span />
-    ) : (
-      <span style={{ color: 'red' }}>{'Please enter a username.'}</span>
-    );
-  };
+	returnUsernameEmpty = () => {
+		return this.props.usernameEntered ? (
+			<span />
+		) : (
+			<span style={{ color: 'red' }}>{'Please enter a username.'}</span>
+		);
+	};
 
-  render() {
-    return (
-      <div>
-        <div className="row">
-          <div className="col s10 offset-s1">
+	render() {
+		return (
+			<div id = "authform">
+        <div id = "title">
             <h4>{this.returnTitle()}</h4>
-          </div>
         </div>
-        <div className="row">
-          <div className="col s10 offset-s1">
+        <div id = "instructions">
             <p>{this.returnInstructions()}</p>
-          </div>
         </div>
-        <div className="row">
-          <form className="col s10 offset-s1">
-            <div className="row">
-              <div className="input-field col s12">
+        <div id = "form">
+          <form>
+            <div className="username">
                 <input
                   id="username"
                   type="text"
@@ -75,10 +70,8 @@ class AuthForm extends Component {
                 />
                 <label htmlFor="username">Username</label>
                 {this.returnUsernameEmpty()}
-              </div>
             </div>
-            <div className="row">
-              <div className="input-field col s12">
+            <div id = "password">
                 <input
                   id="password"
                   type="password"
@@ -86,18 +79,16 @@ class AuthForm extends Component {
                   onChange={this.props.handlePasswordChange}
                 />
                 <label htmlFor="password">Password</label>
-              </div>
             </div>
             {this.returnPasswordConfirm()}
           </form>
         </div>
-        <div className="row">
-          <div className="col s10 offset-s1">
-            <a className="btn left" onClick={this.props.closeGateway}>
+        <div id ="submission">
+            <a className="btn" onClick={this.props.closeGateway}>
               Cancel
             </a>
             <a
-              className="btn right"
+              className="btn"
               onClick={
                 this.props.pathname === '/login'
                   ? this.props.loginSubmitForm
@@ -106,10 +97,9 @@ class AuthForm extends Component {
             >
               Submit
             </a>
-          </div>
         </div>
       </div>
-    );
-  }
+		);
+	}
 }
 export default AuthForm;

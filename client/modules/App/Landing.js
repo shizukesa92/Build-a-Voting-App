@@ -26,7 +26,7 @@ class Landing extends Component {
 		if (this.state.personalView)
 			return (
 				<div
-          className="float right btn"
+          className="btn"
           style={{ marginLeft: '15px' }}
           onClick={() => deletePoll(pollId)}
         >
@@ -38,7 +38,7 @@ class Landing extends Component {
 	renderPolls() {
 		if (this.state.personalView && this.props.polls.length === 0)
 			return (
-				<div className="center-align">
+				<div>
           <h5 style={{ margin: '60px 0px 30px 0px' }}>
             You have not created any polls.
           </h5>
@@ -51,9 +51,9 @@ class Landing extends Component {
 			return (
 				<div className="card blue-grey darken-1" key={poll._id}>
           <div className="card-content white-text">
-            <div className="row">
-              <div className="col s6 card-title">{poll.question}</div>
-              <div className="col s6">
+            <div id = "poll">
+              <div>{poll.question}</div>
+			  <div>
                 <Link
                   to={'/poll/' + poll._id}
                   className="float right btn"
@@ -75,14 +75,14 @@ class Landing extends Component {
                 {this.renderDelete(poll._id)}
               </div>
             </div>
-            <div className="row">
-              <div className="col s8">
+            <div id ="personal">
+              <div>
                 {this.state.personalView
                   ? 'You created this poll '
                   : "Created by user '" + poll.username + "'"}{' '}
                 on {new Date(poll.dateCreated).toLocaleDateString()}.
               </div>
-              <div className="col s4">
+              <div>
                 <div className="right">
                   Total Votes:{' '}
                   {poll.answers.reduce(
@@ -100,8 +100,8 @@ class Landing extends Component {
 
 	render() {
 		return (
-			<div>
-        <h2 className="center-align">
+			<div id = "content">
+        <h2>
           {this.state.personalView ? 'My ' : ''}Recent Polls
         </h2>
         {this.renderPolls()}
