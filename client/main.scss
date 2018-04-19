@@ -2,8 +2,8 @@
 
 html,
 body {
-	height: 100%;
-	width: 100vw;
+	min-height: 100vh;
+	min-width: 100vw;
 	font-family: "Open Sans", Arial, sans-serif !important;
 	margin: 0;
 	padding: 0;
@@ -21,13 +21,14 @@ h3 {
 #wrapper {
 	max-width: 100vw;
 	width: 100vw;
-	min-height: 100%;
+	min-height: 100vh;
 	position: relative;
 	background-color: #FEFFEF !important;
 	padding-bottom: 5vh;
 
 	#content {
 		width: 40vw;
+
 	}
 
 }

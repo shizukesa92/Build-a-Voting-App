@@ -4,15 +4,17 @@
 	width: 100vw;
 	height: 10vh;
 	display: flex;
+	align-items: center;
 	background-color: #BDBDBD;
 	color: #5F5F5F;
 	#left {
-		width: 20%;
+		width: 40%;
 	}
-	#right{
+	.btn-toolbar{
 		width: 20%;
-		margin-left: auto;
+		margin-left: auto; // Floats it to left
 	}
+	font-size: 2vw;
 }
 
 #footer {

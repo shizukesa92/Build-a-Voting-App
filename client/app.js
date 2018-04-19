@@ -12,8 +12,10 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<div>
+			<div id = "wrapper">
             <Header />
+				<div id = "content">
+            </div>
 	<Footer />
           </div>
 		);
