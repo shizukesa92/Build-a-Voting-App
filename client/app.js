@@ -1,10 +1,12 @@
 import React, {
 	Component
-} from 'react';
+} from "react";
 import ReactDOM from "react-dom";
-import Header from './components/Header';
+import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Landing from "./modules/App/Landing"
 require("./main.scss");
+require("./modules/App/App.scss");
 require("./components/Components.scss");
 
 export default class App extends Component {
@@ -14,8 +16,9 @@ export default class App extends Component {
 		return (
 			<div id = "wrapper">
             <Header />
-				<div id = "content">
-            </div>
+			<div id ="content">
+				<Landing />
+			</div>
 	<Footer />
           </div>
 		);

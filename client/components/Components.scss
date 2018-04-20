@@ -1,14 +1,14 @@
 @import "~bootstrap/scss/bootstrap";
 
 #header {
-	width: 100vw;
+	min-width: 100vw;
 	height: 10vh;
 	display: flex;
 	align-items: center;
 	background-color: #BDBDBD;
 	color: #5F5F5F;
 	#left {
-		width: 40%;
+		width: 30%;
 	}
 	.btn-toolbar{
 		width: 20%;
