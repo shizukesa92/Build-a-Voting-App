@@ -4,7 +4,7 @@ import React, {
 import {
 	withRouter
 } from 'react-router-dom';
-//import LoginWindow from './LoginWindow';
+import LoginWindow from './LoginWindow';
 
 class LoginSuccess extends Component {
 	state = {
@@ -20,10 +20,10 @@ class LoginSuccess extends Component {
 		return (
 			<div>
         <div className="greyout" onClick={this.closeGateway} />
-		{/*<LoginWindow
+		<LoginWindow
           redirectOnSuccess={this.state.redirectOnSuccess}
           closeGateway={this.closeGateway}
-		/>*/}
+		/>
       </div>
 		);
 	}

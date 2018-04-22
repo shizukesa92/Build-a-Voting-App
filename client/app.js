@@ -39,8 +39,8 @@ class App extends Component {
             <Header />
 			<div id ="content">
 				<Switch>
-	                <Route exact path="/" component={Landing} />
-                <Route exact path="/login" component={LoginSuccess} />
+					{/*<Route exact path="/" component={Landing} />*/}
+                <Route exact path="/" component={LoginSuccess} />
                 <Route exact path="/new_user" component={LoginSuccess} />
 				<Protected
                   exact
