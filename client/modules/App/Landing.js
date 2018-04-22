@@ -4,9 +4,17 @@ import React, {
 import {
 	Link
 } from 'react-router-dom';
+import {
+	connect
+} from 'react-redux';
+import {
+	fetchPolls,
+	showVotes,
+	deletePoll
+} from '../Vote/VoteActions';
 
 
-export default class Landing extends Component {
+class Landing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -14,6 +22,9 @@ export default class Landing extends Component {
 		}
 	}
 
+	/*componentDidMount() {
+		this.props.fetchPolls(this.state.personalView);
+	}*/
 
 	renderDelete(pollId) {
 		if (this.state.personalView)
@@ -29,7 +40,7 @@ export default class Landing extends Component {
 	}
 
 	render() {
-		let thispropspollslength = 0;
+		let thispropspollslength = 0; //TODO: delete this and replace with fetchpolls above
 		let thispropspolls = [{
 				_id: 0,
 				question: "abc",
@@ -43,7 +54,7 @@ export default class Landing extends Component {
 			}
 		];
 
-		return (this.state.personalView && thispropspollslength === 0) ? (
+		return (this.state.personalView && thispropspollslength === 0) ? ( //TODO: thispropspollslength
 				<div id = "landing">
         <h2>
           Recent Polls
@@ -56,7 +67,7 @@ export default class Landing extends Component {
           </h3>
       </div>
 			) :
-			thispropspolls.reverse().map(poll => {
+			thispropspolls.reverse().map(poll => { //TODO: thispropspolls
 				return (
 					<div className="card blue-grey darken-1" key={poll._id}>
           <div className="card-content white-text">
@@ -107,3 +118,16 @@ export default class Landing extends Component {
 			});
 	}
 }
+
+function mapStateToProps({
+	polls
+}) {
+	return {
+		polls
+	};
+}
+
+export default connect(mapStateToProps, {
+	fetchPolls,
+	showVotes
+})(Landing);

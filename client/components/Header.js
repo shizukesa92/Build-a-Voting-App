@@ -8,10 +8,12 @@ import {
 import {
 	Link
 } from 'react-router-dom';
-
-export default class Header extends Component {
+import {
+	connect
+} from 'react-redux';
+class Header extends Component {
 	buttons() {
-		let auth = true;
+		let auth = true; //TODO: Fix auth
 		return auth ?
 			(
 				<ButtonToolbar> {/* To preserve space between buttons https://react-bootstrap.github.io/components/buttons/ */}
@@ -37,3 +39,13 @@ export default class Header extends Component {
 		);
 	}
 }
+
+function mapStateToProps({
+	auth
+}) {
+	return {
+		auth
+	};
+}
+
+export default connect(mapStateToProps)(Header);
