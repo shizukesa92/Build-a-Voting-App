@@ -10,7 +10,7 @@ export default class Landing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			personalView: false,
+			personalView: this.props.match.path === '/my_polls'
 		}
 	}
 
