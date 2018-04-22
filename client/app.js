@@ -6,11 +6,13 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Landing from "./modules/App/Landing";
 import {
-	BrowserRouter
+	BrowserRouter,
+	Route
 } from "react-router-dom";
 import {
 	Protected
 } from "./modules/Auth/Protected";
+import LoginSuccess from "./modules/Auth/LoginSuccess"
 require("./main.scss");
 require("./modules/App/App.scss");
 require("./components/Components.scss");
@@ -26,12 +28,8 @@ export default class App extends Component {
 			<div id = "wrapper">
             <Header />
 			<div id ="content">
-                <Protected
-                  exact
-                  path="/"
-                  auth={this.props.auth}
-                  component={Landing}
-			  /> {/*change path to my polls */}
+				<Route exact path="/" component={LoginSuccess} />
+                <Route exact path="/" component={LoginSuccess} />
 			</div>
 	<Footer />
 </div>

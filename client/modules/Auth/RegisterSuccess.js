@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoginSuccess = ({
+export const RegisterSuccess = ({
 	username,
 	login
 }) => {
@@ -23,4 +23,3 @@ const LoginSuccess = ({
     </div>
 	);
 };
-export default LoginSuccess;

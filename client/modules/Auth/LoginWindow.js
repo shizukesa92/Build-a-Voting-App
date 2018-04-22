@@ -8,13 +8,13 @@ import axios from 'axios';
 import {
 	withRouter
 } from 'react-router';
-import AuthFailure from './AuthFailure';
+import AuthFailure from './LoginFailure';
 import RegisterSuccess from './RegisterSuccess';
-import AuthForm from './AuthForm';
+import AuthForm from './LoginForm';
 import * as actions from '../Vote/VoteActions';
 
 
-class AuthWindow extends Component {
+class LoginWindow extends Component {
 	state = {
 		loginFailure: false,
 		newuserFailure: false,
@@ -168,4 +168,4 @@ class AuthWindow extends Component {
 	}
 }
 
-export default connect(null, actions)(withRouter(AuthWindow));
+export default connect(null, actions)(withRouter(LoginWindow));

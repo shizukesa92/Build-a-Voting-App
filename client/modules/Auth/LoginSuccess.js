@@ -4,9 +4,9 @@ import React, {
 import {
 	withRouter
 } from 'react-router-dom';
-import AuthWindow from './AuthWindow';
+//import LoginWindow from './LoginWindow';
 
-class Gateway extends Component {
+class LoginSuccess extends Component {
 	state = {
 		redirectOnSuccess: typeof this.props.location.state !== 'undefined' ?
 			this.props.location.state.from.pathname : '/my_polls'
@@ -20,13 +20,13 @@ class Gateway extends Component {
 		return (
 			<div>
         <div className="greyout" onClick={this.closeGateway} />
-        <AuthWindow
+		{/*<LoginWindow
           redirectOnSuccess={this.state.redirectOnSuccess}
           closeGateway={this.closeGateway}
-        />
+		/>*/}
       </div>
 		);
 	}
 }
 
-export default withRouter(Gateway);
+export default withRouter(LoginSuccess);
