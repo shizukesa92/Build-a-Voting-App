@@ -7,12 +7,14 @@ import Footer from "./components/Footer";
 import Landing from "./modules/App/Landing";
 import {
 	BrowserRouter,
-	Route
+	Route,
+	Switch,
+	Redirect
 } from "react-router-dom";
 import {
 	Protected
 } from "./modules/Auth/Protected";
-import LoginSuccess from "./modules/Auth/LoginSuccess"
+import LoginSuccess from "./modules/Auth/LoginSuccess";
 require("./main.scss");
 require("./modules/App/App.scss");
 require("./components/Components.scss");
@@ -28,8 +30,18 @@ export default class App extends Component {
 			<div id = "wrapper">
             <Header />
 			<div id ="content">
-				<Route exact path="/" component={LoginSuccess} />
-                <Route exact path="/" component={LoginSuccess} />
+				<Switch>
+	                <Route exact path="/" component={Landing} />
+                <Route exact path="/login" component={LoginSuccess} />
+                <Route exact path="/new_user" component={LoginSuccess} />
+				<Protected
+                  exact
+                  path="/my_polls"
+                  auth={this.props.auth}
+                  component={Landing}
+			  />
+			  <Redirect to="/" />
+		  </Switch>
 			</div>
 	<Footer />
 </div>

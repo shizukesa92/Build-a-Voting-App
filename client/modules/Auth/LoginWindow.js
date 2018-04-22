@@ -8,9 +8,9 @@ import axios from 'axios';
 import {
 	withRouter
 } from 'react-router';
-import AuthFailure from './LoginFailure';
+import LoginFailure from './LoginFailure';
 import RegisterSuccess from './RegisterSuccess';
-import AuthForm from './LoginForm';
+import LoginForm from './LoginForm';
 import * as actions from '../Vote/VoteActions';
 
 
@@ -30,7 +30,7 @@ class LoginWindow extends Component {
 	renderContent() {
 		if (this.state.loginFailure || this.state.newuserFailure)
 			return (
-				<AuthFailure
+				<LoginFailure
           goBack={this.backFromAuthFailure}
           loginFailure={this.state.loginFailure}
         />
@@ -44,7 +44,7 @@ class LoginWindow extends Component {
 			);
 		else
 			return (
-				<AuthForm
+				<LoginForm
           pathname={this.props.location.pathname}
           username={this.state.username}
           password={this.state.password}
