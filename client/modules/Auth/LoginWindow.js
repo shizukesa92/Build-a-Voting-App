@@ -9,7 +9,9 @@ import {
 	withRouter
 } from 'react-router';
 import LoginFailure from './LoginFailure';
-import RegisterSuccess from './RegisterSuccess';
+import {
+	RegisterSuccess
+} from './RegisterSuccess';
 import LoginForm from './LoginForm';
 import * as actions from '../Vote/VoteActions';
 
@@ -44,11 +46,10 @@ class LoginWindow extends Component {
 			);
 		else
 			return (
-				<LoginFailure
-          goBack={this.backFromAuthFailure}
-          loginFailure={this.state.loginFailure}
+				<RegisterSuccess
+          login={this.loginSubmitForm}
+          username={this.state.username}
         />
-
 			);
 	}
 
