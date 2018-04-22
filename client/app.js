@@ -39,15 +39,23 @@ class App extends Component {
             <Header />
 			<div id ="content">
 				<Switch>
-					{/*<Route exact path="/" component={Landing} />*/}
-                <Route exact path="/" component={LoginSuccess} />
+					<Route exact path="/" component={Landing} />
+                <Route exact path="/login" component={LoginSuccess} />
                 <Route exact path="/new_user" component={LoginSuccess} />
+                <Route exact path="/poll/:pollId/" component={Poll} />
+				
 				<Protected
                   exact
                   path="/my_polls"
                   auth={this.props.auth}
                   component={Landing}
 			  />
+			  <Protected
+                  exact
+                  path="/new_poll"
+                  auth={this.props.auth}
+                  component={PollNew}
+                />
 			  <Redirect to="/" />
 		  </Switch>
 			</div>
