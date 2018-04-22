@@ -44,21 +44,11 @@ class LoginWindow extends Component {
 			);
 		else
 			return (
-				<LoginForm
-          pathname={this.props.location.pathname}
-          username={this.state.username}
-          password={this.state.password}
-          passwordConfirm={this.state.passwordConfirm}
-          handleUsernameChange={this.handleUsernameChange}
-          handlePasswordChange={this.handlePasswordChange}
-          handlePasswordConfirmChange={this.handlePasswordConfirmChange}
-          loginSubmitForm={this.loginSubmitForm}
-          registerSubmitForm={this.registerSubmitForm}
-          usernameEntered={this.state.usernameEntered}
-          passwordEntered={this.state.passwordEntered}
-          passwordsMatch={this.state.passwordsMatch}
-          closeGateway={this.props.closeGateway}
+				<LoginFailure
+          goBack={this.backFromAuthFailure}
+          loginFailure={this.state.loginFailure}
         />
+
 			);
 	}
 
