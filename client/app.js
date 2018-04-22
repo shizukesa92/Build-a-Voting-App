@@ -15,14 +15,22 @@ import {
 	Protected
 } from "./modules/Auth/Protected";
 import LoginSuccess from "./modules/Auth/LoginSuccess";
+import {
+	connect
+} from 'react-redux';
+import * as actions from './modules/Vote/VoteActions';
+import Poll from './modules/Vote/Poll';
+import PollNew from './modules/Vote/PollNew';
 require("./main.scss");
 require("./modules/App/App.scss");
 require("./components/Components.scss");
 require("./modules/Auth/Auth.scss");
 require("./modules/Vote/Vote.scss")
 
-export default class App extends Component {
-
+class App extends Component {
+	componentDidMount() {
+		this.props.fetchUser();
+	} /*current failing because no props*/
 
 	render() {
 		return (
@@ -49,3 +57,12 @@ export default class App extends Component {
 		);
 	}
 }
+
+function mapStateToProps({
+	auth
+}) {
+	return {
+		auth
+	};
+}
+export default connect(mapStateToProps, actions)(App);
