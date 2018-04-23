@@ -40,6 +40,6 @@ require('./server/routes/pollRoutes')(app);
 app.use(express.static("./dist/client"));
 const path = require('path');
 app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname + "./dist/client/index.html")); // Cannot use render for html unlike pug etc
+	res.sendFile(path.join(__dirname + "/dist/client/index.html")); // Cannot use render for html unlike pug etc
 });
 app.listen(process.env.PORT || 3000);
