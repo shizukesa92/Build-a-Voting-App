@@ -42,7 +42,7 @@ class App extends Component {
 					<Route exact path="/" component={Landing} />
                 <Route exact path="/login" component={LoginSuccess} />
                 <Route exact path="/new_user" component={LoginSuccess} />
-                <Route exact path="/poll/:pollId/" component={Poll} />
+                <Route exact path="/poll/:pollId//" component={Poll} />
 				
 				<Protected
                   exact

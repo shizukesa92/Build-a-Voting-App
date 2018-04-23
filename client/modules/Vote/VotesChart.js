@@ -1,29 +1,32 @@
 import React from 'react';
 import {
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-  LabelList
+	ResponsiveContainer,
+	BarChart,
+	Bar,
+	CartesianGrid,
+	XAxis,
+	YAxis,
+	LabelList
 } from 'recharts';
 
-export default ({ answers, totalVotes }) => {
-  const data = answers.map(({ answer, voteCount }) => {
-    return {
-      answer,
-      value: voteCount,
-      voteLabel: voteCount === 1 ? voteCount + ' vote' : voteCount + ' votes',
-      percent:
-        voteCount === 0 ? '' : Math.floor(voteCount / totalVotes * 100) + '%'
-    };
-  });
+export default ({
+	answers,
+	totalVotes
+}) => {
+	const data = answers.map(({
+		answer,
+		voteCount
+	}) => {
+		return {
+			answer,
+			value: voteCount,
+			voteLabel: voteCount === 1 ? voteCount + ' vote' : voteCount + ' votes',
+			percent: voteCount === 0 ? '' : Math.floor(voteCount / totalVotes * 100) + '%'
+		};
+	});
 
-  // const data = 'This is my data.';
-  // return <div>{JSON.stringify(data)}</div>;
-  return (
-    <ResponsiveContainer width="100%" height="90%">
+	return (
+		<ResponsiveContainer width="100%" height="90%">
       <BarChart data={data}>
         <XAxis dataKey="answer" />
         <YAxis padding={{ top: 30 }} />
@@ -34,5 +37,5 @@ export default ({ answers, totalVotes }) => {
         </Bar>
       </BarChart>
     </ResponsiveContainer>
-  );
+	);
 };

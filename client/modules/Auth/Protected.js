@@ -12,7 +12,7 @@
 	<Route
     {...rest}
     render={props =>
-			true ? ( //TODO change true to auth
+			auth ? ( 
         <Component {...props} />
 	): (
 	<Redirect

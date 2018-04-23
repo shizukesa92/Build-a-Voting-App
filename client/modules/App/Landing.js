@@ -22,9 +22,9 @@ class Landing extends Component {
 		}
 	}
 
-	/*componentDidMount() {
+	componentDidMount() {
 		this.props.fetchPolls(this.state.personalView);
-	}*/
+	}
 
 	renderDelete(pollId) {
 		if (this.state.personalView)
@@ -40,21 +40,9 @@ class Landing extends Component {
 	}
 
 	render() {
-		let thispropspollslength = 0; //TODO: delete this and replace with fetchpolls above
-		let thispropspolls = [{
-				_id: 0,
-				question: "abc",
-				answers: [1, 2]
-			},
-			{
-				_id: 1,
-				question: "def",
-				answers: [3, 4]
 
-			}
-		];
 
-		return (this.state.personalView && thispropspollslength === 0) ? ( //TODO: thispropspollslength
+		return (this.state.personalView && this.props.polls.length === 0) ? (
 				<div id = "landing">
         <h2>
           Recent Polls
@@ -67,7 +55,7 @@ class Landing extends Component {
           </h3>
       </div>
 			) :
-			thispropspolls.reverse().map(poll => { //TODO: thispropspolls
+			this.props.polls.reverse().map(poll => {
 				return (
 					<div className="card blue-grey darken-1" key={poll._id}>
           <div className="card-content white-text">

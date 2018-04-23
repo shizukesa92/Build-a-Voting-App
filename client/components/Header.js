@@ -13,14 +13,7 @@ import {
 } from 'react-redux';
 class Header extends Component {
 	buttons() {
-		let auth = true; //TODO: Fix auth
-		return auth ?
-			(
-				<ButtonToolbar> {/* To preserve space between buttons https://react-bootstrap.github.io/components/buttons/ */}
-			<Button bsStyle = "link"><Link to="/login">Log-in</Link></Button> 
-			<Button bsStyle = "link"><Link to="/new_user">Sign-up</Link></Button>
-		</ButtonToolbar>
-			) :
+		return this.props.auth ?
 			(
 				<ButtonToolbar> 
 			<Button bsStyle = "link"><Link to="/new_poll">Create</Link></Button> 
@@ -28,6 +21,13 @@ class Header extends Component {
 			<Button bsStyle = "link"><Link to="/">All</Link></Button> 
 			<Button bsStyle = "link" href = "/api/logout">Log-out</Button>
 		</ButtonToolbar>
+			) :
+			(
+				<ButtonToolbar> {/* To preserve space between buttons https://react-bootstrap.github.io/components/buttons/ */}
+			<Button bsStyle = "link"><Link to="/login">Log-in</Link></Button> 
+			<Button bsStyle = "link"><Link to="/new_user">Sign-up</Link></Button>
+		</ButtonToolbar>
+
 			);
 	}
 	render() {
