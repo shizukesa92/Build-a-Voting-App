@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const FETCH_USER = 'fetch_user';
 
 export const FETCH_POLLS = 'fetch-polls';

@@ -163,9 +163,11 @@ class LoginWindow extends Component {
 
 	render() {
 		return (
-			<div id = "authwindow">
+			<div className="row">
+        <div className="col s8 offset-s2 loginWindow">
           {this.renderContent()}
         </div>
+      </div>
 		);
 	}
 }
