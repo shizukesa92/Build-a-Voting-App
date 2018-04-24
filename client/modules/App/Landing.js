@@ -15,10 +15,13 @@ import {
 
 
 class Landing extends Component {
-	state = {
-		personalView: this.props.match.path === '/my_polls'
-	};
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			personalView: this.props.match.path === "/my_polls"
+		};
+	}
 	componentDidMount() {
 		this.props.fetchPolls(this.state.personalView);
 	}
@@ -39,52 +42,44 @@ class Landing extends Component {
 	renderPolls() {
 		if (this.state.personalView && this.props.polls.length === 0)
 			return (
-				<div className="center-align">
-          <h5 style={{ margin: '60px 0px 30px 0px' }}>
+				<div>
+          <h2>
             You have not created any pools.
-          </h5>
-          <h6>
+          </h2>
+          <h2>
             Click on 'Create New Poll' in the overhead menu to get started.
-          </h6>
+          </h2>
         </div>
 			);
 		return this.props.polls.reverse().map(poll => {
 			return (
-				<div className="card blue-grey darken-1" key={poll._id}>
-          <div className="card-content white-text">
-            <div className="row">
-              <div className="col s6 card-title">{poll.question}</div>
-              <div className="col s6">
+				<div id = "poll" key={poll._id}>
+            <div>
+              <div>{poll.question}</div>
+              <div>
                 <Link
-                  to={'/poll/' + poll._id}
-                  className="float right btn"
-                  style={{
-                    marginBottom: '15px',
-                    marginLeft: '15px'
-                  }}
+                  to={"/poll/" + poll._id}
                 >
                   View
                 </Link>
                 <Link
-                  to={'/poll/' + poll._id}
+                  to={"/poll/" + poll._id}
                   onClick={() => this.props.showVotes(true)}
-                  className="right btn"
-                  style={{ marginLeft: '15px', marginBottom: '15px' }}
                 >
                   Vote
                 </Link>
                 {this.renderDelete(poll._id)}
               </div>
             </div>
-            <div className="row">
-              <div className="col s8">
+            <div>
+              <div>
                 {this.state.personalView
                   ? 'You created this poll '
                   : "Created by user '" + poll.username + "'"}{' '}
                 on {new Date(poll.dateCreated).toLocaleDateString()}.
               </div>
-              <div className="col s4">
-                <div className="right">
+              <div>
+                <div>
                   Total Votes:{' '}
                   {poll.answers.reduce(
                     (ans1, ans2) => ans1 + ans2.voteCount,
@@ -93,7 +88,6 @@ class Landing extends Component {
                 </div>
               </div>
             </div>
-          </div>
         </div>
 			);
 		});
@@ -101,8 +95,8 @@ class Landing extends Component {
 
 	render() {
 		return (
-			<div>
-        <h2 className="center-align">
+			<div id = "landing">
+        <h2>
           {this.state.personalView ? 'My ' : ''}Recent Polls
         </h2>
         {this.renderPolls()}

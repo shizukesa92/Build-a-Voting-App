@@ -21,6 +21,7 @@ import {
 import * as actions from './modules/Vote/VoteActions';
 import Poll from './modules/Vote/Poll';
 import PollNew from './modules/Vote/PollNew';
+
 require("./main.scss");
 require("./modules/App/App.scss");
 require("./components/Components.scss");
@@ -30,7 +31,7 @@ require("./modules/Vote/Vote.scss")
 class App extends Component {
 	componentDidMount() {
 		this.props.fetchUser();
-	} /*current failing because no props*/
+	}
 
 	render() {
 		return (
