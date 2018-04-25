@@ -1,31 +1,31 @@
-const mongoose = require('mongoose');
-const Poll = mongoose.model('polls');
-const Voters = mongoose.model('voters');
-const Answer = mongoose.model('answer');
-const requireLogin = require('./requireLoginMiddleware');
+const mongoose = require("mongoose");
+const Poll = mongoose.model("polls");
+const Voters = mongoose.model("voters");
+const Answer = mongoose.model("answer");
+const requireLogin = require("./requireLoginMiddleware");
 
 module.exports = app => {
-	app.get('/api/all_polls', async (req, res) => {
+	app.get("/api/all_polls", async (req, res) => {
 		const polls = await Poll.find({});
 
 		res.send(polls);
 	});
 
-	app.get('/api/my_polls', requireLogin, async (req, res) => {
+	app.get("/api/my_polls", requireLogin, async (req, res) => {
 		const polls = await Poll.find({
 			_user: req.user.id
 		});
 		res.send(polls);
 	});
 
-	app.get('/api/poll/:pollId', async (req, res) => {
+	app.get("/api/poll/:pollId", async (req, res) => {
 		const poll = await Poll.findOne({
 			_id: req.params.pollId
 		});
 		res.send(poll);
 	});
 
-	app.post('/api/poll/new', requireLogin, async (req, res) => {
+	app.post("/api/poll/new", requireLogin, async (req, res) => {
 		const {
 			question,
 			answers
@@ -41,10 +41,10 @@ module.exports = app => {
 
 		const pollDocument = await poll.save();
 
-		res.send('Poll document has been saved');
+		res.send("Poll document has been saved");
 	});
 
-	app.post('/api/add_answer/:pollId', requireLogin, async (req, res) => {
+	app.post("/api/add_answer/:pollId", requireLogin, async (req, res) => {
 		await Poll.updateOne({
 			_id: req.params.pollId
 		}, {
@@ -59,9 +59,9 @@ module.exports = app => {
 		//Find the answer id so that the voter list can hold its id
 		const newAnswerEntry = await Poll.findOne({
 			_id: req.params.pollId,
-			'answers.answer': req.body.answer
+			"answers.answer": req.body.answer
 		}, {
-			'answers.$': 1,
+			"answers.$": 1,
 			_id: 0
 		});
 
@@ -74,13 +74,13 @@ module.exports = app => {
 		res.send({});
 	});
 
-	app.post('/api/vote/:pollId/:answerId', async (req, res) => {
+	app.post("/api/vote/:pollId/:answerId", async (req, res) => {
 		await Poll.updateOne({
 			_id: req.params.pollId,
-			'answers._id': req.params.answerId
+			"answers._id": req.params.answerId
 		}, {
 			$inc: {
-				'answers.$.voteCount': 1
+				"answers.$.voteCount": 1
 			}
 		});
 
@@ -95,7 +95,7 @@ module.exports = app => {
 				_poll: req.params.pollId,
 				_answer: req.params.answerId,
 				voters: [{
-					_user: 'user' in req ? req.user.id : undefined,
+					_user: "user" in req ? req.user.id : undefined,
 					ipAddress: req.ip
 				}]
 			});
@@ -106,17 +106,17 @@ module.exports = app => {
 			}, {
 				$push: {
 					voters: {
-						_user: 'user' in req ? req.user.id : undefined,
+						_user: "user" in req ? req.user.id : undefined,
 						ipAddress: req.ip
 					}
 				}
 			});
 		}
 
-		res.send('Poll updated.');
+		res.send("Poll updated.");
 	});
 
-	app.delete('/api/poll/:pollId', requireLogin, async (req, res) => {
+	app.delete("/api/poll/:pollId", requireLogin, async (req, res) => {
 		await Promise.all([
 			Poll.deleteOne({
 				_id: req.params.pollId
@@ -126,6 +126,6 @@ module.exports = app => {
 			})
 		]);
 
-		res.send('Poll deleted');
+		res.send("Poll deleted");
 	});
 };

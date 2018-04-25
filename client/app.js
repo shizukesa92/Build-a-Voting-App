@@ -2,9 +2,6 @@ import React, {
 	Component
 } from "react";
 import ReactDOM from "react-dom";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Landing from "./modules/App/Landing";
 import {
 	BrowserRouter,
 	Route,
@@ -12,15 +9,19 @@ import {
 	Redirect
 } from "react-router-dom";
 import {
+	connect
+} from "react-redux";
+
+import {
 	Protected
 } from "./modules/Auth/Protected";
-import LoginSuccess from "./modules/Auth/LoginSuccess";
-import {
-	connect
-} from 'react-redux';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Landing from "./modules/App/Landing";
 import * as actions from './modules/Vote/VoteActions';
 import Poll from './modules/Vote/Poll';
 import PollNew from './modules/Vote/PollNew';
+import LoginSuccess from "./modules/Auth/LoginSuccess";
 
 require("./main.scss");
 require("./modules/App/App.scss");
@@ -67,11 +68,12 @@ class App extends Component {
 	}
 }
 
-function mapStateToProps({
+const mapStateToProps = ({
 	auth
-}) {
+}) => {
 	return {
 		auth
-	};
+	}
 }
+
 export default connect(mapStateToProps, actions)(App);

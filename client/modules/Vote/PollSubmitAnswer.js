@@ -1,83 +1,103 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import PollAnswers from './PollAnswers';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React, {
+	Component
+} from "react";
+import axios from "axios";
+import {
+	connect
+} from "react-redux";
+import {
+	withRouter
+} from "react-router-dom";
+import {
+	Button
+} from "react-bootstrap";
+
+import {
+	PollAnswers
+} from "./PollAnswers";
 
 class PollSubmitAnswer extends Component {
-  state = {
-    selectedAnswer: '',
-    otherAnswer: ''
-  };
 
-  submitAnswer = async () => {
-    if (this.state.selectedAnswer === '')
-      window.alert('Please select an answer in order to vote.');
-    else if (this.state.selectedAnswer === 'other') {
-      if (!this.props.auth) {
-        if (window.confirm('Please login in order to submit custom asnwer.'))
-          this.props.history.push({
-            pathname: '/login',
-            state: { from: this.props.location }
-          });
-      } else if (this.state.otherAnswer === '')
-        window.alert(
-          'Please type in an answer in order to submit custom answer.'
-        );
-      else {
-        try {
-          await axios.post('/api/add_answer/' + this.props.pollId + '/', {
-            answer: this.state.otherAnswer
-          });
-          window.alert('Thank you for your vote.');
-          // this.setState({ selectedAnswer: '', otherAnswer: '' });
-          this.props.getPollInfo(this.props.pollId);
-          this.props.clearAnswers();
-        } catch (err) {
-          window.alert('There was a problem recording your response: ' + err);
-        }
-      }
-    } else {
-      try {
-        console.log(this.props.pollId);
-        await axios.post(
-          '/api/vote/' + this.props.pollId + '/' + this.state.selectedAnswer,
-          {}
-        );
-        window.alert('Thank you for your vote.');
-        // this.setState({ selectedAnswer: '', otherAnswer: '' });
-        this.props.getPollInfo(this.props.pollId);
-        this.props.clearAnswers();
-      } catch (err) {
-        window.alert('There was a problem recording your response: ' + err);
-      }
-    }
-  };
+	constructor(props) {
+		super(props);
+		this.state = {
+			selectedAnswer: "",
+			otherAnswer: ""
+		};
+	}
 
-  handleAnswerSelect = e => {
-    if (e.target.id === 'other') this.otherInput.focus();
-    this.setState({ selectedAnswer: e.target.id });
-  };
+	submitAnswer = async () => {
+		if (this.state.selectedAnswer === "")
+			window.alert("Please select an answer in order to vote.");
+		else if (this.state.selectedAnswer === "other") {
+			if (!this.props.auth) {
+				if (window.confirm("Please login in order to submit custom asnwer."))
+					this.props.history.push({
+						pathname: "/login",
+						state: {
+							from: this.props.location
+						}
+					});
+			} else if (this.state.otherAnswer === "")
+				window.alert(
+					"Please type in an answer in order to submit custom answer."
+				);
+			else {
+				try {
+					await axios.post("/api/add_answer/" + this.props.pollId + "/", {
+						answer: this.state.otherAnswer
+					});
+					window.alert("Thank you for your vote.");
+					this.props.getPollInfo(this.props.pollId);
+					this.props.clearAnswers();
+				} catch (err) {
+					window.alert("There was a problem recording your response: " + err);
+				}
+			}
+		} else {
+			try {
+				await axios.post(
+					"/api/vote/" + this.props.pollId + "/" + this.state.selectedAnswer, {}
+				);
+				window.alert("Thank you for your vote.");
+				this.props.getPollInfo(this.props.pollId);
+				this.props.clearAnswers();
+			} catch (err) {
+				window.alert("There was a problem recording your response: " + err);
+			}
+		}
+	};
 
-  handleOtherTyping = e => {
-    this.setState({ otherAnswer: e.target.value });
-  };
+	handleAnswerSelect = e => {
+		if (e.target.id === "other") this.otherInput.focus();
+		this.setState({
+			selectedAnswer: e.target.id
+		});
+	};
 
-  handleOtherFocus = () => {
-    this.setState({ selectedAnswer: 'other' });
-  };
-  renderOtherOption() {
-    return (
-      <div className="answerOptions">
+	handleOtherTyping = e => {
+		this.setState({
+			otherAnswer: e.target.value
+		});
+	};
+
+	handleOtherFocus() {
+		this.setState({
+			selectedAnswer: "other"
+		});
+	};
+
+	renderOtherOption() {
+		return (
+			<div>
         <input
-          className="with-gap"
           type="radio"
           id="other"
           onChange={this.handleAnswerSelect}
-          checked={this.state.selectedAnswer === 'other'}
+          checked={this.state.selectedAnswer === "other"}
         />
-        <label htmlFor={'other'}>Other: </label>
-        <div className="input-field inline">
+        <label htmlFor={"other"}>Other: </label>
+        <div>
           <input
             onFocus={this.handleOtherFocus}
             onChange={this.handleOtherTyping}
@@ -85,31 +105,34 @@ class PollSubmitAnswer extends Component {
               this.otherInput = input;
             }}
             type="text"
-            className="otherAnswer"
             value={this.state.otherAnswer}
           />
         </div>
       </div>
-    );
-  }
-  render() {
-    return (
-      <div style={{ marginTop: '40px' }}>
+		);
+	}
+	render() {
+		return (
+			<div>
         <PollAnswers
           answers={this.props.answers}
           selectedAnswer={this.state.selectedAnswer}
           handleAnswerSelect={this.handleAnswerSelect}
         />
         {this.renderOtherOption()}
-        <div className="btn blockBtns" onClick={this.submitAnswer}>
-          Submit<i className="material-icons right">send</i>
-        </div>
+        <Button bsStyle = "link" onClick={this.submitAnswer}>
+          Submit
+        </Button>
       </div>
-    );
-  }
+		);
+	}
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+const mapStateToProps = ({
+	auth
+}) => {
+	return {
+		auth
+	};
 }
 export default connect(mapStateToProps)(withRouter(PollSubmitAnswer));

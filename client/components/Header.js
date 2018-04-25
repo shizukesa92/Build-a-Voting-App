@@ -10,7 +10,8 @@ import {
 } from 'react-router-dom';
 import {
 	connect
-} from 'react-redux';
+} from "react-redux";
+
 class Header extends Component {
 	buttons() {
 		return this.props.auth ?
@@ -33,19 +34,19 @@ class Header extends Component {
 	render() {
 		return (
 			<div id="header">
-				<span id = "left" className = "text-center"><a href ="/">Build a Voting App</a></span>
+				<span id = "left" className = "text-center"><a href = "/">Build a Voting App</a></span>
 				{this.buttons()}	
         </div>
 		);
 	}
 }
 
-function mapStateToProps({
+const mapStateToProps = ({
 	auth
-}) {
+}) => {
 	return {
 		auth
-	};
+	}
 }
 
 export default connect(mapStateToProps)(Header);

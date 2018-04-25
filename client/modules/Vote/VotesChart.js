@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
 	ResponsiveContainer,
 	BarChart,
@@ -7,7 +7,7 @@ import {
 	XAxis,
 	YAxis,
 	LabelList
-} from 'recharts';
+} from "recharts";
 
 export default ({
 	answers,
@@ -20,8 +20,8 @@ export default ({
 		return {
 			answer,
 			value: voteCount,
-			voteLabel: voteCount === 1 ? voteCount + ' vote' : voteCount + ' votes',
-			percent: voteCount === 0 ? '' : Math.floor(voteCount / totalVotes * 100) + '%'
+			voteLabel: voteCount === 1 ? voteCount + " vote" : voteCount + " votes",
+			percent: voteCount === 0 ? "" : Math.floor(voteCount / totalVotes * 100) + "%"
 		};
 	});
 

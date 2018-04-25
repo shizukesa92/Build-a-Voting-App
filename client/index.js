@@ -1,22 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
 import {
 	Provider
-} from 'react-redux';
+} from "react-redux";
 import {
 	createStore,
 	applyMiddleware
-} from 'redux';
-import reducers from './reducers';
-import reduxThunk from 'redux-thunk';
-import axios from 'axios';
+} from "redux";
+import reduxThunk from "redux-thunk";
+import axios from "axios";
+
+import App from "./App";
+import {
+	store
+} from "./store";
+
 require("babel-polyfill");
 
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
-
-
 window.axios = axios;
+
 ReactDOM.render(
 	<Provider store={store}>
 	<App />

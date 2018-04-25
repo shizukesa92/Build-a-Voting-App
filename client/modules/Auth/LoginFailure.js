@@ -1,29 +1,31 @@
-import React from 'react';
+import React from "react";
+import {
+	Button
+} from "react-bootstrap";
 
-const AuthFailure = ({
-	goBack,
-	loginFailure
+export const LoginFailure = ({
+	back,
+	fail
 }) => {
 	return (
-		<div id = "authfailure">
-      <div id = "rowone">
+		<div>
+      <div>
           <p>
-            {loginFailure
-              ? 'Username or Password are Invalid.'
-              : 'Username is taken.'}
+            {fail
+              ? "Username or Password is Invalid."
+              : "Username is taken."}
           </p>
           <p>
-            {loginFailure
-              ? 'Please try again.'
-              : 'Please chose a different username.'}
+            {fail
+              ? "Please try again."
+              : "Please chose a different username."}
           </p>
       </div>
-      <div id = "rowtwo">
-          <a className="btn" onClick={goBack}>
-            Okay
-          </a>
+      <div>
+          <Button bsStyle = "link" onClick={back}>
+            Done
+          </Button>
       </div>
     </div>
 	);
 };
-export default AuthFailure;

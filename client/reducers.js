@@ -1,16 +1,16 @@
 import {
 	combineReducers
-} from 'redux';
+} from "redux";
 import {
 	reducer as reduxForm
-} from 'redux-form';
+} from "redux-form";
 
 import {
 	FETCH_USER,
 	LOG_IN,
 	FETCH_POLLS,
 	SHOW_VOTES
-} from './modules/Vote/VoteActions';
+} from "./modules/Vote/VoteActions";
 
 const authReducer = (state = null, action) => {
 	switch (action.type) {
@@ -21,7 +21,7 @@ const authReducer = (state = null, action) => {
 	}
 };
 
-const gatewayReducer = (state = '', action) => {
+const gatewayReducer = (state = "", action) => {
 	switch (action.type) {
 		case LOG_IN:
 			return action.type;

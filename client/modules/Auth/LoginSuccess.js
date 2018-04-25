@@ -1,25 +1,29 @@
 import React, {
 	Component
-} from 'react';
+} from "react";
 import {
 	withRouter
-} from 'react-router-dom';
+} from "react-router-dom";
 import LoginWindow from './LoginWindow';
 
 class LoginSuccess extends Component {
-	state = {
-		redirectOnSuccess: typeof this.props.location.state !== 'undefined' ?
-			this.props.location.state.from.pathname : '/my_polls'
-	};
 
-	closeGateway = () => {
+	constructor(props) {
+		super(props);
+		this.state = {
+			redirectOnSuccess: typeof this.props.location.state !== "undefined" ?
+				this.props.location.state.from.pathname : "/my_polls"
+		};
+	}
+
+	closeGateway() {
 		this.props.history.goBack();
 	};
 
 	render() {
 		return (
-			<div>
-        <div className="greyout" onClick={this.closeGateway} />
+			<div id = "login">
+        <div id="grey" onClick={this.closeGateway} />
 		<LoginWindow
           redirectOnSuccess={this.state.redirectOnSuccess}
           closeGateway={this.closeGateway}

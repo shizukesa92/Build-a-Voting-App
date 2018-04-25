@@ -1,42 +1,49 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
-import PollAnswers from './PollAnswers';
-import axios from 'axios';
+import React from "react";
+import {
+	connect
+} from "react-redux";
+import {
+	withRouter
+} from "react-router-dom";
+import {
+	PollAnswers
+} from "./PollAnswers";
+import axios from "axios";
+import {
+	Button
+} from "react-bootstrap";
 
-const PollFormReview = ({ history, onCancel, formValues }) => {
-  const parsedAnswers = formValues.answers
-    .split(',')
-    .map(answer => answer.trim())
-    .map((answer, index) => ({ _id: index, answer }));
+const PollFormReview = ({
+	history,
+	onCancel,
+	formValues
+}) => {
+	const parsedAnswers = formValues.answers
+		.split(",")
+		.map(answer => answer.trim())
+		.map((answer, index) => ({
+			_id: index,
+			answer
+		}));
 
-  // console.log(parsedAnswers);
-  // console.log({
-  //   question: formValues.question,
-  //   answers: parsedAnswers.map(answer => {
-  //     return {
-  //       answer: answer.answer
-  //     };
-  //   })
-  // });
-  const submitPoll = async () => {
-    await axios.post('/api/poll/new', {
-      question: formValues.question,
-      answers: parsedAnswers.map(answer => {
-        return {
-          answer: answer.answer
-        };
-      })
-    });
+	const submitPoll = async () => {
+		await axios.post("/api/poll/new", {
+			question: formValues.question,
+			answers: parsedAnswers.map(answer => {
+				return {
+					answer: answer.answer
+				};
+			})
+		});
 
-    history.push('/my_polls');
-  };
+		history.push("/my_polls");
+	};
 
-  return (
-    <div>
-      <h4 className="center-align">Please confirm your entries</h4>
+	return (
+		<div>
+      <h4>Please confirm your entries</h4>
       <span>Question:</span>
-      <h5 style={{ marginBottom: '50px', marginTop: '30px' }}>
+      <h5>
         {formValues.question}
       </h5>
       <span>Answers:</span>
@@ -45,32 +52,27 @@ const PollFormReview = ({ history, onCancel, formValues }) => {
         answers={parsedAnswers}
         selectedAnswer={null}
         checked={false}
-        pointer={'noHandPointer'}
+        pointer={"noHandPointer"}
       />
-      <div className="row" />
-      <div className="row" />
-      <div className="row" />
 
-      <button
-        className="
-    pink lighten-1 white-text btn-flat"
+
+      <Button bsStyle = "link"
         onClick={onCancel}
       >
         Back
-      </button>
-      <button
+      </Button>
+      <Button bsStyle = "link"
         onClick={submitPoll}
-        className="blue darken-1 white-text btn-flat right"
       >
-        Create Poll<i className="material-icons right">create</i>
-      </button>
+        Create Poll
+      </Button>
     </div>
-  );
+	);
 };
 
-function mapStateToProps(state) {
-  return {
-    formValues: state.form.pollForm.values
-  };
+const mapStateToProps = (state) => {
+	return {
+		formValues: state.form.pollForm.values
+	};
 }
 export default connect(mapStateToProps)(withRouter(PollFormReview));

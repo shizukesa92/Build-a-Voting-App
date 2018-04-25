@@ -1,26 +1,35 @@
 import React, {
 	Component
-} from 'react';
+} from "react";
 import {
 	connect
-} from 'react-redux';
-import axios from 'axios';
-import VotesChart from './VotesChart';
-import PollSubmitAnswer from './PollSubmitAnswer';
+} from "react-redux";
+import axios from "axios";
+import {
+	Button
+} from "react-bootstrap";
+
+
+import VotesChart from "./VotesChart";
+import PollSubmitAnswer from "./PollSubmitAnswer";
 import {
 	showVotes,
 	deletePoll
-} from '../Vote/VoteActions';
+} from "../Vote/VoteActions";
 
 class Poll extends Component {
-	state = {
-		pollId: this.props.match.params.pollId,
-		username: '',
-		dateCreated: '',
-		question: '',
-		answers: [],
-		totalVotes: 0
-	};
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			pollId: this.props.match.params.pollId,
+			username: "",
+			dateCreated: "",
+			question: "",
+			answers: [],
+			totalVotes: 0
+		};
+	}
 
 	componentDidMount() {
 		this.getPollInfo(this.state.pollId);
@@ -31,7 +40,7 @@ class Poll extends Component {
 	}
 
 	getPollInfo = async pollId => {
-		const res = await axios.get('/api/poll/' + pollId);
+		const res = await axios.get("/api/poll/" + pollId);
 		this.setState({
 			dateCreated: new Date(res.data.dateCreated).toLocaleDateString(),
 			username: res.data.username,
@@ -43,23 +52,22 @@ class Poll extends Component {
 			)
 		});
 	};
+
 	renderPollOptions() {
 		return (
 			<div>
-        <h4 className="center-align" style={{ marginBottom: '0px' }}>
+        <h4>
           Options
         </h4>
-        <div className="divider" />
         <ul>
-          <li className="blockBtns btn ">
+          <li>
             <a
-              className="white-text"
               target="_blank"
               rel="noopener noreferrer"
               href={
-                'http://twitter.com/share?text=Vote in this poll on Demos: &url=' +
+                "http://twitter.com/share?text=Vote in this poll on Demos: &url=" +
                 window.location.href +
-                '&hashtags=DemosVoting'
+                "&hashtags=DemosVoting"
               }
             >
               Share &nbsp;&nbsp;&nbsp;<i className="fab fa-twitter" />
@@ -68,7 +76,6 @@ class Poll extends Component {
           {this.props.auth &&
           this.props.auth.username === this.state.username ? (
             <li
-              className="blockBtns btn"
               onClick={() => deletePoll(this.state.pollId)}
             >
               Delete
@@ -85,58 +92,45 @@ class Poll extends Component {
               }}
             />
           ) : (
-            <li className="blockBtns btn" onClick={this.props.showVotes}>
+            <Button bsStyle = "link" onClick={this.props.showVotes}>
               Vote
-            </li>
+            </Button>
           )}
         </ul>
       </div>
 		);
 	}
+
 	render() {
 		return (
-			<div>
+			<div id = "poll">
         <div className="row ">
-          <div className="col s12">
-            <h2 className="center-align" style={{ paddingBottom: '20px' }}>
+            <h2>
               {this.state.question}
             </h2>
-          </div>
         </div>
         <div className="row">
-          <div
-            className="col s12 l8 "
-            style={{ height: '400px', backgroundColor: '' }}
-          >
             <div className="row">
-              <div className="col s12" style={{ height: '50px' }} />
-              <div className="col s7 offset-s2">
-                Created by user <i>{this.state.username}</i> on{' '}
+                Created by user <i>{this.state.username}</i> on{" "}
                 {this.state.dateCreated}.
-              </div>
-              <div className="col s3">Total Votes: {this.state.totalVotes}</div>
+              <div>Total Votes: {this.state.totalVotes}</div>
             </div>
-            <div className="col s12" style={{ height: '300px' }}>
               <VotesChart
                 answers={this.state.answers}
                 totalVotes={this.state.totalVotes}
               />
-            </div>
           </div>
 
-          <div className="col s12 l3 offset-l1" style={{ backgroundColor: '' }}>
             {this.renderPollOptions()}
-          </div>
         </div>
-      </div>
 		);
 	}
 }
 
-function mapStateToProps({
+const mapStateToProps = ({
 	auth,
 	showVoteOptions
-}) {
+}) => {
 	return {
 		auth,
 		showVoteOptions

@@ -1,12 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const PollAnswers = props => {
-  return props.answers.map((answer, index) => {
-    return (
-      <div key={answer._id} style={{ height: '4rem' }}>
-        <div className="answerOptions">
+export const PollAnswers = props => {
+	return props.answers.map((answer, index) => {
+		return (
+			<div key={answer._id}>
+        <div>
           <input
-            className="with-gap noHandPointer"
             type="radio"
             id={answer._id}
             onChange={props.handleAnswerSelect}
@@ -17,8 +16,6 @@ const PollAnswers = props => {
           </label>
         </div>
       </div>
-    );
-  });
+		);
+	});
 };
-
-export default PollAnswers;

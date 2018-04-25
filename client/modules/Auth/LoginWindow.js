@@ -1,34 +1,40 @@
 import React, {
 	Component
-} from 'react';
+} from "react";
 import {
 	connect
-} from 'react-redux';
-import axios from 'axios';
+} from "react-redux";
+import axios from "axios";
 import {
 	withRouter
-} from 'react-router';
-import LoginFailure from './LoginFailure';
+} from "react-router";
+
+import {
+	LoginFailure
+} from "./LoginFailure";
 import {
 	RegisterSuccess
-} from './RegisterSuccess';
-import LoginForm from './LoginForm';
-import * as actions from '../Vote/VoteActions';
+} from "./RegisterSuccess";
+import LoginForm from "./LoginForm";
+import * as actions from "../Vote/VoteActions";
 
 
 class LoginWindow extends Component {
-	state = {
-		loginFailure: false,
-		newuserFailure: false,
-		newuserSuccess: false,
-		username: '',
-		password: '',
-		passwordConfirm: '',
-		passwordsMatch: true,
-		usernameEntered: true,
-		passwordEntered: true
-	};
 
+	constructor(props) {
+		super(props);
+		this.state = {
+			loginFailure: false,
+			newuserFailure: false,
+			newuserSuccess: false,
+			username: "",
+			password: "",
+			passwordConfirm: "",
+			passwordsMatch: true,
+			usernameEntered: true,
+			passwordEntered: true
+		};
+	}
 	renderContent() {
 		if (this.state.loginFailure || this.state.newuserFailure)
 			return (
@@ -84,7 +90,7 @@ class LoginWindow extends Component {
 
 	loginSubmitForm = () => {
 		axios
-			.post('/api/login', {
+			.post("/api/login", {
 				username: this.state.username,
 				password: this.state.password
 			})
@@ -96,8 +102,8 @@ class LoginWindow extends Component {
 			.catch(err =>
 				this.setState({
 					loginFailure: true,
-					username: '',
-					password: ''
+					username: "",
+					password: ""
 				})
 			);
 	};
@@ -106,19 +112,19 @@ class LoginWindow extends Component {
 		if (this.state.password !== this.state.passwordConfirm)
 			this.setState({
 				passwordsMatch: false,
-				password: '',
-				passwordConfirm: ''
+				password: "",
+				passwordConfirm: ""
 			});
 		else this.setState({
 			passwordsMatch: true
 		});
-		if (this.state.username === '') this.setState({
+		if (this.state.username === "") this.setState({
 			usernameEntered: false
 		});
 		else this.setState({
 			usernameEntered: true
 		});
-		if (this.state.password === '') this.setState({
+		if (this.state.password === "") this.setState({
 			passwordEntered: false
 		});
 		else this.setState({
@@ -127,17 +133,16 @@ class LoginWindow extends Component {
 
 		if (
 			this.state.password === this.state.passwordConfirm &&
-			this.state.username !== '' &&
-			this.state.password !== ''
+			this.state.username !== "" &&
+			this.state.password !== ""
 		) {
 			axios
-				.post('/api/create_user', {
+				.post("/api/create_user", {
 					username: this.state.username,
 					password: this.state.password
 				})
 				.then(res => {
-					console.log(res.data);
-					if (res.data === 'New User Registered')
+					if (res.data === "New User Registered")
 						this.setState({
 							newuserSuccess: true
 						});
@@ -147,24 +152,24 @@ class LoginWindow extends Component {
 						});
 					}
 				})
-				.catch(err => window.alert('Error: ' + err));
+				.catch(err => window.alert("Error: " + err));
 		}
 	};
 
-	backFromAuthFailure = () => {
+	backFromAuthFailure() {
 		this.setState({
 			loginFailure: false,
 			newuserFailure: false,
-			username: '',
-			password: '',
-			passwordConfirm: ''
+			username: "",
+			password: "",
+			passwordConfirm: ""
 		});
 	};
 
 	render() {
 		return (
-			<div className="row">
-        <div className="col s8 offset-s2 loginWindow">
+			<div id = "loginwindow">
+        <div>
           {this.renderContent()}
         </div>
       </div>

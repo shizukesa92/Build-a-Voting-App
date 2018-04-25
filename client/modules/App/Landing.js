@@ -3,16 +3,20 @@ import React, {
 } from "react";
 import {
 	Link
-} from 'react-router-dom';
+} from "react-router-dom";
 import {
 	connect
-} from 'react-redux';
+} from "react-redux";
+
 import {
 	fetchPolls,
 	showVotes,
 	deletePoll
 } from '../Vote/VoteActions';
-
+import {
+	Button,
+	ButtonToolbar
+} from "react-bootstrap";
 
 class Landing extends Component {
 
@@ -29,13 +33,11 @@ class Landing extends Component {
 	renderDelete(pollId) {
 		if (this.state.personalView)
 			return (
-				<div
-          className="float right btn"
-          style={{ marginLeft: '15px' }}
+				<Button bsStyle = "link"
           onClick={() => deletePoll(pollId)}
         >
           Delete
-        </div>
+        </Button>
 			);
 	}
 
@@ -56,7 +58,7 @@ class Landing extends Component {
 				<div id = "poll" key={poll._id}>
             <div>
               <div>{poll.question}</div>
-              <div>
+              <div id = "landingbuttons">
                 <Link
                   to={"/poll/" + poll._id}
                 >
@@ -74,13 +76,13 @@ class Landing extends Component {
             <div>
               <div>
                 {this.state.personalView
-                  ? 'You created this poll '
+                  ? "You created this poll "
                   : "Created by user '" + poll.username + "'"}{' '}
                 on {new Date(poll.dateCreated).toLocaleDateString()}.
               </div>
               <div>
                 <div>
-                  Total Votes:{' '}
+                  Total Votes:{" "}
                   {poll.answers.reduce(
                     (ans1, ans2) => ans1 + ans2.voteCount,
                     0
@@ -97,7 +99,7 @@ class Landing extends Component {
 		return (
 			<div id = "landing">
         <h2>
-          {this.state.personalView ? 'My ' : ''}Recent Polls
+          {this.state.personalView ? "My " : " "}Recent Polls
         </h2>
         {this.renderPolls()}
       </div>
@@ -105,9 +107,9 @@ class Landing extends Component {
 	}
 }
 
-function mapStateToProps({
+const mapStateToProps = ({
 	polls
-}) {
+}) => {
 	return {
 		polls
 	};

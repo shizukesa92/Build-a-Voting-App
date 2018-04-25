@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
+
 #landing, #landing > *, #landing > * > *{
 	width: 40vw;
 	display: flex;
@@ -10,3 +11,8 @@
 	background-color: white;
 }
 
+#landingbuttons {
+	justify-content: space-around !important;
+	display: flex;
+	width: 40vw;
+}

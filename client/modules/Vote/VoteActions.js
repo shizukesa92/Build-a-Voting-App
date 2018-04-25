@@ -1,19 +1,19 @@
-export const FETCH_USER = 'fetch_user';
+export const FETCH_USER = "fetch_user";
 
-export const FETCH_POLLS = 'fetch-polls';
+export const FETCH_POLLS = "fetch-polls";
 
-export const SHOW_VOTES = 'show-votes';
+export const SHOW_VOTES = "show-votes";
 
-export const UPDATE_STATE = 'update-state';
+export const UPDATE_STATE = "update-state";
 
-export const LOG_IN = 'log_in';
+export const LOG_IN = "log_in";
 
-export const SIGN_UP = 'sign-up';
+export const SIGN_UP = "sign-up";
 
-export const CLOSE_GATEWAY = '';
+export const CLOSE_GATEWAY = "";
 
 export const fetchUser = () => async dispatch => {
-	const res = await axios.get('/api/current_user');
+	const res = await axios.get("/api/current_user");
 	dispatch({
 		type: FETCH_USER,
 		payload: res.data
@@ -21,8 +21,8 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const fetchPolls = myPolls => async dispatch => {
-	const path = myPolls ? '/my_polls' : '/all_polls';
-	const res = await axios.get('/api' + path);
+	const path = myPolls ? "/my_polls" : "/all_polls";
+	const res = await axios.get("/api" + path);
 
 	dispatch({
 		type: FETCH_POLLS,
@@ -38,9 +38,9 @@ export const showVotes = show => ({
 });
 
 export const deletePoll = async pollId => {
-	if (window.confirm('Your poll will be deleted.')) {
-		await axios.delete('/api/poll/' + pollId);
-		window.alert('Your poll has been deleted.');
-		window.location.href = '/';
+	if (window.confirm("Your poll will be deleted.")) {
+		await axios.delete("/api/poll/" + pollId);
+		window.alert("Your poll has been deleted.");
+		window.location.href = "/";
 	}
 };

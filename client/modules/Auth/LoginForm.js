@@ -1,58 +1,62 @@
 import React, {
 	Component
-} from 'react';
+} from "react";
+import {
+	Button,
+	ButtonToolbar
+} from "react-bootstrap";
 
-class AuthForm extends Component {
-	returnTitle = () => {
-		return this.props.pathname === '/login' ? 'Log In' : 'Register';
-	};
+export default class LoginForm extends Component {
+	returnTitle() {
+		return this.props.pathname === "/login" ? "Login" : "Register";
+	}
 
-	returnInstructions = () => {
-		return this.props.pathname === '/login' ?
-			'Please enter your Username and Password.' :
-			'Pleaes enter a new Username and Password.';
-	};
+	returnInstructions() {
+		return this.props.pathname === "/login" ?
+			"Please enter your Username and Password." :
+			"Please enter a new Username and Password.";
+	}
 
-	returnPasswordConfirm = () => {
-		return this.props.pathname === '/login' ? (
+	returnPasswordConfirm() {
+		return this.props.pathname === "/login" ? (
 			<div />
 		) : (
 			<div id = "confirmation">
-          <input
+        <label htmlFor="password">Confirm Password</label>  <input
             id="passwordConfirm"
             type="password"
             value={this.props.passwordConfirm}
             onChange={this.props.handlePasswordConfirmChange}
           />
-          <label htmlFor="password">Confirm Password</label>
+          
           {this.returnPasswordConfirmFailure()}
       </div>
 		);
-	};
+	}
 
-	returnPasswordConfirmFailure = () => {
+	returnPasswordConfirmFailure() {
 		if (!this.props.passwordEntered)
-			return <span style={{ color: 'red' }}>{'Please enter a password.'}</span>;
+			return <span>{"Please enter a password."}</span>;
 		if (!this.props.passwordsMatch)
 			return (
-				<span style={{ color: 'red' }}>
+				<span>
           {"The passwords don't match. Please retype your password."}
         </span>
 			);
 		return;
-	};
+	}
 
-	returnUsernameEmpty = () => {
+	returnUsernameEmpty() {
 		return this.props.usernameEntered ? (
 			<span />
 		) : (
-			<span style={{ color: 'red' }}>{'Please enter a username.'}</span>
+			<span>{"Please enter a username."}</span>
 		);
-	};
+	}
 
 	render() {
 		return (
-			<div id = "authform">
+			<div id = "loginform">
         <div id = "title">
             <h4>{this.returnTitle()}</h4>
         </div>
@@ -62,44 +66,44 @@ class AuthForm extends Component {
         <div id = "form">
           <form>
             <div className="username">
-                <input
+               <label htmlFor="username">Username</label> <input
                   id="username"
                   type="text"
                   value={this.props.username}
                   onChange={this.props.handleUsernameChange}
                 />
-                <label htmlFor="username">Username</label>
+                
                 {this.returnUsernameEmpty()}
             </div>
             <div id = "password">
-                <input
+                <label htmlFor="password">Password</label> <input
                   id="password"
                   type="password"
                   value={this.props.password}
                   onChange={this.props.handlePasswordChange}
                 />
-                <label htmlFor="password">Password</label>
+               
             </div>
             {this.returnPasswordConfirm()}
           </form>
         </div>
-        <div id ="submission">
-            <a className="btn" onClick={this.props.closeGateway}>
+		<div id ="submission">
+			<ButtonToolbar>
+           <Button bsStyle = "link" onClick={this.props.closeGateway}>
               Cancel
-            </a>
-            <a
-              className="btn"
+            </Button>
+           <Button bsStyle = "link"
               onClick={
-                this.props.pathname === '/login'
+                this.props.pathname === "/login"
                   ? this.props.loginSubmitForm
                   : this.props.registerSubmitForm
               }
             >
               Submit
-            </a>
+		  </Button>
+	  </ButtonToolbar>
         </div>
       </div>
 		);
 	}
 }
-export default AuthForm;
