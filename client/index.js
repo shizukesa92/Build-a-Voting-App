@@ -10,7 +10,7 @@ import {
 import reduxThunk from "redux-thunk";
 import axios from "axios";
 
-import App from "./App";
+import App from "./app";
 import {
 	store
 } from "./store";
